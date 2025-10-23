@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .popup {
+            position: absolute;
+            background-color: pink;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            font-family: '楷体', serif;
+            font-size: 18px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+            display: none; /* 初始隐藏，通过JS控制显示 */
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // 创建200个弹窗
+        for(let i = 0; i < 200; i++) {
+            createPopup();
+        }
+
+        function createPopup() {
+            // 创建弹窗元素
+            const popup = document.createElement('div');
+            popup.className = 'popup';
+            popup.innerHTML = '我想你了!';
+            popup.style.width = '220px';
+            popup.style.height = '50px';
+            
+            // 随机位置
+            const screenWidth = window.innerWidth;
+            const screenHeight = window.innerHeight;
+            const posX = Math.random() * (screenWidth - 250);
+            const posY = Math.random() * (screenHeight - 100);
+            
+            popup.style.left = posX + 'px';
+            popup.style.top = posY + 'px';
+            popup.style.display = 'block';
+            
+            document.body.appendChild(popup);
+            
+            // 5秒后自动移除（可选）
+            setTimeout(() => {
+                popup.remove();
+            }, 5000);
+        }
+
+        // 点击页面任意位置创建新弹窗
+        document.body.addEventListener('click', createPopup);
+    </script>
+</body>
+</html>
